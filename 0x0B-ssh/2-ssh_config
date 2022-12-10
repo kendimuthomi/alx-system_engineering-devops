@@ -1,0 +1,5 @@
+# SSH Client Configuration file
+Host *
+	HostName 100.26.169.98
+	IdentifyFile ~/.ssh/school
+	PasswordAuthentication no
