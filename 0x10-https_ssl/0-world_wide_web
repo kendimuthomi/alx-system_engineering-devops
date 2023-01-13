@@ -14,6 +14,6 @@ then
 elif [ "$#" = 2 ]
 then
 	record_type=$(dig $2.$1 | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $4}')
-	desination=$(dig $2.$1 | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $5}')
+	destination=$(dig $2.$1 | grep -A1 'ANSWER SECTION' | tail -1 | awk '{print $5}')
 	echo "The subdomain $2 is a $record_type record and points to $destination"
 fi
