@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Creates a compressed back up of all the mysql databases in a server
+# and saves it in a file with the format: day-month-year.tar.gz
+
+mysqldump -uroot -p"$1" --all-databases > backup.sql
+fileformat="$(date +%d-%m-%Y)"
+tarfile="${fileformat}.tar.gz"
+tar -czf "$tarfile" backup.sql
