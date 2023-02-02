@@ -4,7 +4,7 @@ total subscribers) for a given subreddit"""
 
 import requests
 import sys
-after=None
+after = None
 
 
 def recurse(subreddit, hot_list=[]):
