@@ -4,18 +4,25 @@ total subscribers) for a given subreddit"""
 
 import requests
 import sys
+after=None
 
 
-def top_ten(subreddit):
+def recurse(subreddit, hot_list=[]):
     """returns the number of subscribers"""
+    global after
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {'User-Agent': 'Spam4Karma'}
-    param = {'limit': 10}
+    param = {'after': after}
     res = requests.get(url, headers=headers, allow_redirects=False,
                        params=param)
     if res.status_code == 200:
+        next_ = response.json().get('data').get('after')
+        if next_ is not None:
+            after = next_
+            recurse(subreddit, hot_list)
         tittles = res.json().get("data").get("children")
         for tittle in tittles:
-            print(tittle.get('data').get('title'))
+            hot_list.append(tittle.get('data').get('title'))
+        return hot_list
     else:
-        print(None)
+        return (None)
