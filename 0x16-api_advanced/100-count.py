@@ -4,18 +4,16 @@ total subscribers) for a given subreddit"""
 
 import requests
 import sys
+after = None
+count_dict = []
 
 
-def top_ten(subreddit):
+def count_words(subreddit, word_list):
     """returns the number of subscribers"""
+    global after
+    global count_dict
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {'User-Agent': 'Spam4Karma'}
-    param = {'limit': 10}
+    param = {'after': after}
     res = requests.get(url, headers=headers, allow_redirects=False,
                        params=param)
-    if res.status_code == 200:
-        tittles = res.json().get("data").get("children")
-        for tittle in tittles:
-            print(tittle.get('data').get('title'))
-    else:
-        print(None)
