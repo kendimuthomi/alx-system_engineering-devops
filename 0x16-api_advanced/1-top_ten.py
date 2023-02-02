@@ -12,7 +12,7 @@ def top_ten(subreddit):
     headers = {'User-Agent': 'Spam4Karma'}
     param = {'limit': 10}
     res = requests.get(url, headers=headers, allow_redirects=False,
-                        params=param)
+                       params=param)
     if res.status_code == 200:
         tittles = res.json().get("data").get("children")
         for tittle in tittles:
